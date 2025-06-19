@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest
+          pytest -v
 
   build-and-publish:
     name: Build and Publish

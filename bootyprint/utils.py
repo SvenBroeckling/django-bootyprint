@@ -1,6 +1,14 @@
 import tempfile
 from pathlib import Path
 
+try:
+    from weasyprint import HTML
+except ImportError:
+    raise ImportError(
+        "WeasyPrint is required for PDF generation. "
+        "Install it with: uv add weasyprint"
+    )
+
 from django.template.loader import render_to_string
 from django.core.cache import cache
 from django.utils.encoding import force_str
@@ -22,14 +30,6 @@ def generate_pdf(template_name=None, context=None, filename=None, cache_key=None
     Returns:
         BytesIO: PDF content as bytes
     """
-    try:
-        from weasyprint import HTML
-    except ImportError:
-        raise ImportError(
-            "WeasyPrint is required for PDF generation. "
-            "Install it with: uv add weasyprint"
-        )
-
     if context is None:
         context = {}
 

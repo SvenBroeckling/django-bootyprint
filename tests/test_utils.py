@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch, Mock, MagicMock
+from unittest.mock import patch, MagicMock
 
 from bootyprint.utils import generate_cache_key
 
@@ -43,6 +43,9 @@ class TestUtils(unittest.TestCase):
         }.get(key)
 
         mock_cache.get.return_value = None
+
+        # Return a string from render_to_string that can be encoded
+        mock_render.return_value = "<html><body>Test</body></html>"
 
         mock_pdf = b'PDF_CONTENT'
         mock_html_instance = MagicMock()
