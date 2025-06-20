@@ -17,14 +17,13 @@ import hashlib
 from bootyprint.settings import get_setting
 
 
-def generate_pdf(template_name=None, context=None, filename=None, cache_key=None):
+def generate_pdf(template_name=None, context=None, cache_key=None):
     """
     Generate a PDF from a template and context.
 
     Args:
         template_name: The template to use, defaults to setting DEFAULT_TEMPLATE
         context: The context to pass to the template
-        filename: The filename to use when saving
         cache_key: If provided and caching is enabled, will try to retrieve from cache
 
     Returns:

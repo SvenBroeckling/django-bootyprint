@@ -97,6 +97,7 @@ def my_pdf_view(request):
 ### Using PDFTemplateResponse
 
 ```python
+from django.views.generic import DetailView
 from bootyprint.views import PDFTemplateResponse
 
 def my_pdf_view(request):
@@ -108,6 +109,11 @@ def my_pdf_view(request):
         context=context,
         filename='my_document.pdf'
     )
+
+class MyPDFView(DetailView):
+    model = MyModel
+    template_name = "myapp/my_template.html"
+    response_class = PDFTemplateResponse
 ```
 
 ## Template Tags
