@@ -1,6 +1,8 @@
 import tempfile
 from pathlib import Path
 
+from django.template.loader import render_to_string
+
 try:
     from weasyprint import HTML
 except ImportError:
@@ -9,7 +11,6 @@ except ImportError:
         "Install it with: uv add weasyprint"
     )
 
-from django.template.loader import render_to_string
 from django.core.cache import cache
 from django.utils.encoding import force_str
 import hashlib
@@ -17,7 +18,7 @@ import hashlib
 from bootyprint.settings import get_setting
 
 
-def generate_pdf(template_name=None, context=None, cache_key=None):
+def generate_pdf(template_name=None, context=None, cache_key=None, encoding='utf-8'):
     """
     Generate a PDF from a template and context.
 
@@ -25,6 +26,7 @@ def generate_pdf(template_name=None, context=None, cache_key=None):
         template_name: The template to use, defaults to setting DEFAULT_TEMPLATE
         context: The context to pass to the template
         cache_key: If provided and caching is enabled, will try to retrieve from cache
+        encoding: The encoding to use for the rendered template
 
     Returns:
         BytesIO: PDF content as bytes
@@ -47,7 +49,7 @@ def generate_pdf(template_name=None, context=None, cache_key=None):
         tmp.write(html_string.encode('utf-8'))
         tmp_path = Path(tmp.name)
 
-    html = HTML(filename=tmp_path)
+    html = HTML(filename=tmp_path, encoding=encoding)
     pdf_content = html.write_pdf(**pdf_options)
 
     tmp_path.unlink()

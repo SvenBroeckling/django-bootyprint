@@ -69,7 +69,8 @@ def my_pdf_view(request):
     context = {'title': 'My Document', 'content': 'Hello World'}
     pdf_content = generate_pdf(
         template_name='myapp/my_template.html',
-        context=context
+        context=context,
+        encoding='utf-8'
     )
 
     # Return as response

@@ -12,9 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Added
 - Template tag: `bootyprint_css`
 - Template tag: `local_static`
+- Added encoding argument to `generate_pdf()`
 
 #### Changed
 - Changed the PDF_OPTIONS to be WeasyPrint `write_pdf()` options.
+- Removed `filename` argument from `generate_pdf()` function.
 
 ### [0.0.1]
 
