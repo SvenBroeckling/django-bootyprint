@@ -37,7 +37,7 @@ class TestUtils(unittest.TestCase):
         # Setup mocks
         mock_get_setting.side_effect = lambda key: {
             'DEFAULT_TEMPLATE': 'bootyprint/default.html',
-            'PDF_OPTIONS': {'page_size': 'A4'},
+            'PDF_OPTIONS': {'srgb': False},
             'CACHE_ENABLED': True,
             'CACHE_TIMEOUT': 86400
         }.get(key)
@@ -63,6 +63,6 @@ class TestUtils(unittest.TestCase):
         mock_cache.get.assert_called_with('test-key')
         mock_render.assert_called_once()
         mock_html.assert_called_once()
-        mock_html_instance.write_pdf.assert_called_with(page_size='A4')
+        mock_html_instance.write_pdf.assert_called_with(srgb=False)
         mock_cache.set.assert_called_with('test-key', mock_pdf, 86400)
         self.assertEqual(result, mock_pdf)

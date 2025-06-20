@@ -49,6 +49,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install build twine
 
+      - name: Download bootyprint.min.css from latest release
+        run: |
+          mkdir -p bootyprint/static/bootyprint
+          LATEST_RELEASE=$(curl -s https://api.github.com/repos/SvenBroeckling/BootyPrint/releases/latest | jq -r .tag_name)
+          curl -s -L https://github.com/SvenBroeckling/BootyPrint/releases/download/${LATEST_RELEASE}/bootyprint.min.css -o bootyprint/static/bootyprint/bootyprint.min.css
+          echo "Downloaded bootyprint.min.css from release ${LATEST_RELEASE}"
+
       - name: Build package
         run: python -m build
 

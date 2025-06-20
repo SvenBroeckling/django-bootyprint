@@ -1,5 +1,3 @@
-# EditorConfig is awesome: https://EditorConfig.org
-
 # top-most EditorConfig file
 root = true
 
@@ -15,18 +13,13 @@ indent_size = 4
 [*.py]
 max_line_length = 88
 
-# Use 2 spaces for the HTML files
 [*.html]
-indent_size = 2
+indent_size = 4
 
 # The JSON files contain newlines inconsistently
 [*.json]
-indent_size = 2
+indent_size = 4
 insert_final_newline = ignore
-
-[**/admin/js/vendor/**]
-indent_style = ignore
-indent_size = ignore
 
 # Minified JavaScript files shouldn't be changed
 [**.min.js]

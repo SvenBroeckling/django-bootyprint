@@ -20,7 +20,9 @@ class TestSettings(unittest.TestCase):
         custom_settings = {
             'DEFAULT_TEMPLATE': 'custom/template.html',
             'PDF_OPTIONS': {
-                'page_size': 'Letter',
+                'custom_metadata': True,
+                'srgb': False,
+                'optimize_images': False,
             }
         }
 
@@ -29,7 +31,7 @@ class TestSettings(unittest.TestCase):
 
             # Test custom settings
             self.assertEqual(get_setting('DEFAULT_TEMPLATE'), 'custom/template.html')
-            self.assertEqual(get_setting('PDF_OPTIONS'), {'page_size': 'Letter'})
+            self.assertEqual(get_setting('PDF_OPTIONS'), {'custom_metadata': True, 'srgb': False, 'optimize_images': False})
 
             # Test fallback to defaults for settings not specified
             self.assertEqual(get_setting('CACHE_ENABLED'), BOOTYPRINT_DEFAULTS['CACHE_ENABLED'])

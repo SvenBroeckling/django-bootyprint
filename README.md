@@ -1,6 +1,6 @@
 # Django BootyPrint
 
-A Django app for rendering PDF documents with WeasyPrint.
+A Django app for rendering PDF documents with WeasyPrint and [BootyPrint](https://github.com/SvenBroeckling/BootyPrint).
 
 ## Installation
 
@@ -30,15 +30,26 @@ INSTALLED_APPS = [
 
 2. Customize settings in your settings.py (optional):
 
+See [WeasyPrint PDF generation options](https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#weasyprint.DEFAULT_OPTIONS) for the options in `PDF_OPTIONS`
+
 ```python
 BOOTYPRINT = {
     'DEFAULT_TEMPLATE': 'myapp/my_template.html',  # Override default template
     'PDF_OPTIONS': {
-        'page_size': 'Letter',  # Change from default A4
-        'margin_top': '1in',    # Custom margins
-        'margin_right': '1in',
-        'margin_bottom': '1in',
-        'margin_left': '1in',
+        'media_type': 'print',
+        'pdf_identifier': None,
+        'pdf_variant': None,
+        'pdf_version': None,
+        'pdf_forms': False,
+        'uncompressed_pdf': False,
+        'custom_metadata': False,
+        'srgb': True,
+        'optimize_images': True,
+        'jpeg_quality': 95,
+        'presentational_hints': False,
+        'dpi': 96,
+        'full_fonts': True,
+        'hinting': True,
     },
     'CACHE_ENABLED': True,      # Enable caching (default: True)
     'CACHE_TIMEOUT': 3600,      # Cache timeout in seconds (default: 86400 - 24 hours)
@@ -97,6 +108,38 @@ def my_pdf_view(request):
         context=context,
         filename='my_document.pdf'
     )
+```
+
+## Template Tags
+
+### Load BootyPrint
+
+The latest BootyPrint is included in this library. The `bootyprint_css` template tag loads it into the html template.
+
+```html
+{% load bootyprint %}
+<head>
+    {% bootyprint_css %}
+    <style>
+        :root {
+            --primary: #3f51b5;
+            --secondary: #2196f3;
+            --font-size-base: 11px;
+            --page-size: A4;
+            --page-margin: 10mm;
+        }
+    </style>
+</head>
+```
+
+### Local paths to static files
+
+Usually it's the easiest way to provide local, absolute file paths to resources to WeasyPrint. The template tag
+`local_static` is like django's `static` tag, but returns a local path.
+
+```html
+{% load bootyprint %}
+<img src="{% local_static "img/default_avatar" %}" alt="My Profile Image">
 ```
 
 ## Templates

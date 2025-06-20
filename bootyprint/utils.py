@@ -36,31 +36,23 @@ def generate_pdf(template_name=None, context=None, filename=None, cache_key=None
     if template_name is None:
         template_name = get_setting('DEFAULT_TEMPLATE')
 
-    # Cache handling
     if cache_key and get_setting('CACHE_ENABLED'):
         cached_pdf = cache.get(cache_key)
         if cached_pdf:
             return cached_pdf
 
-    # Render the HTML template
     html_string = render_to_string(template_name, context)
-
-    # Get PDF options from settings
     pdf_options = get_setting('PDF_OPTIONS')
 
-    # Generate PDF
     with tempfile.NamedTemporaryFile(suffix='.html', delete=False) as tmp:
         tmp.write(html_string.encode('utf-8'))
         tmp_path = Path(tmp.name)
 
-    # Use the file path to create the PDF (helps with relative resources)
     html = HTML(filename=tmp_path)
     pdf_content = html.write_pdf(**pdf_options)
 
-    # Clean up temp file
     tmp_path.unlink()
 
-    # Cache the generated PDF
     if cache_key and get_setting('CACHE_ENABLED'):
         cache.set(cache_key, pdf_content, get_setting('CACHE_TIMEOUT'))
 

@@ -7,7 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
-### [Unreleased]
+### [0.0.2]
+
+#### Added
+- Template tag: `bootyprint_css`
+- Template tag: `local_static`
+
+#### Changed
+- Changed the PDF_OPTIONS to be WeasyPrint `write_pdf()` options.
+
+### [0.0.1]
 
 #### Added
 - Initial release of django-bootyprint

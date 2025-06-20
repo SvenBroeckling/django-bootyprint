@@ -1,76 +1,27 @@
-<!DOCTYPE html>
+{% load bootyprint %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title|default:"Generated Document" }}</title>
+    {% bootyprint_css %}
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12pt;
-            line-height: 1.5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            font-size: 10pt;
-            color: #666;
-        }
-        .content {
-            padding: 10px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #444;
-        }
-        @page {
-            @bottom-right {
-                content: "Page " counter(page) " of " counter(pages);
-                font-size: 10pt;
-            }
+        :root {
+            --primary: #3f51b5;
+            --secondary: #2196f3;
+            --font-size-base: 11px;
+            --page-size: A4;
+            --page-margin: 10mm;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>{{ title|default:"Generated Document" }}</h1>
-    </div>
 
-    <div class="content">
-        {% block content %}
-            {{ content|safe }}
-        {% endblock %}
-    </div>
+<div class="content">
+    {% block content %}
+    {{ content|safe }}
+    {% endblock %}
+</div>
 
-    <div class="footer">
-        {% block footer %}
-            Generated with BootyPrint on {{ generation_date|date:"F j, Y" }}
-        {% endblock %}
-    </div>
 </body>
 </html>
