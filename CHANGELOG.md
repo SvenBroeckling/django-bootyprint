@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+### [0.0.3] - 2025-06-25
+
+#### Changed
+- Updated bootyprint to v0.0.10
+
 ### [0.0.2]
 
 #### Added
