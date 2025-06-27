@@ -1,19 +1,11 @@
+import hashlib
 import tempfile
 from pathlib import Path
 
-from django.template.loader import render_to_string
-
-try:
-    from weasyprint import HTML
-except ImportError:
-    raise ImportError(
-        "WeasyPrint is required for PDF generation. "
-        "Install it with: uv add weasyprint"
-    )
-
 from django.core.cache import cache
+from django.template.loader import render_to_string
 from django.utils.encoding import force_str
-import hashlib
+from weasyprint import HTML
 
 from bootyprint.settings import get_setting
 
