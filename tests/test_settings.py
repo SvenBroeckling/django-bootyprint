@@ -19,6 +19,7 @@ class TestSettings(unittest.TestCase):
         """Test that custom settings override defaults"""
         custom_settings = {
             'DEFAULT_TEMPLATE': 'custom/template.html',
+            'FONT_KITS_STATIC_PATH': 'font_kits',
             'PDF_OPTIONS': {
                 'custom_metadata': True,
                 'srgb': False,

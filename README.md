@@ -35,6 +35,7 @@ See [WeasyPrint PDF generation options](https://doc.courtbouillon.org/weasyprint
 ```python
 BOOTYPRINT = {
     'DEFAULT_TEMPLATE': 'myapp/my_template.html',  # Override default template
+    'FONT_KITS_STATIC_PATH': 'font_kits',
     'PDF_OPTIONS': {
         'media_type': 'print',
         'pdf_identifier': None,

@@ -5,6 +5,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+### [0.0.5] - 2025-09-20
+
+#### Changed
+- Changed the python requirement to 3.11+ to allow for the latest PyPy version
+- Added initial utility functions for "font kits"
+
 ### [0.0.4] - 2025-06-27
 
 #### Changed

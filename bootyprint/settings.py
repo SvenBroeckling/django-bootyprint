@@ -3,6 +3,7 @@ from django.conf import settings
 # Default settings for bootyprint
 BOOTYPRINT_DEFAULTS = {
     'DEFAULT_TEMPLATE': 'bootyprint/default.html',
+    'FONT_KITS_STATIC_PATH': 'font_kits',
     'PDF_OPTIONS': {
         'media_type': 'print',
         'pdf_identifier': None,

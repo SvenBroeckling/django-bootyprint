@@ -2,6 +2,8 @@ from django.contrib.staticfiles import finders
 from django.template import Library
 from django.utils.safestring import mark_safe
 
+from bootyprint.utils import get_accumulated_fonts_css
+
 register = Library()
 
 @register.simple_tag
@@ -21,3 +23,12 @@ def local_static(path):
     else:
         raise ValueError(f"Static file '{path}' could not be found.")
 
+@register.simple_tag
+def font_kits():
+    """
+    This Tag returns the accumulated font kits css from the configured font kit path.
+    Settings:
+      BOOTYPRINT_FONT_KITS_STATIC_PATH: the static path to the font kits
+          (default: 'font_kits')
+    """
+    return get_accumulated_fonts_css()
